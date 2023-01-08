@@ -3,5 +3,7 @@
 
 https://forums.bohemia.net/forums/topic/134774-boeingsoar-mh-47e-release-v13/
 https://docs.google.com/file/d/0B1SRXz4VtjWTOXQ4UkpVUjFrbkE/edit?resourcekey=0-I3UdiMvWStQAg-59jXsDMw
-https://workdrive.zoho.com/folder/dp9bdb07b1b6fc754499a88f32a8c38694ae2
+
+Files:
+(https://workdrive.zohoexternal.com/external/d6abd9ffc4f6d30b51eda94d697705e006d5be24ab57bc59de42cf0910f9230f/download)
 
