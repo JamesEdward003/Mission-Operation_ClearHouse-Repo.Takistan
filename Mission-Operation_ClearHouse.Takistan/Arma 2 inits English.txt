@@ -1,0 +1,60 @@
+Unit stands still:
+this disableAI "MOVE";
+
+Unit should not go away and do not lie:
+this disableAI "MOVE", this setunitpos "up"
+
+Unit has his hands behind his head:
+this switch move "AmovPercMstpSsurWnonDnon";
+
+Unit 1 shoots at unit2:
+Unit1 dofire unit2
+
+Unit stands up (while crouching or standing):
+setunitpos this "up"
+
+Unit only wounding of 0.6-0.8:
+unit1 setdammage 0.8
+
+A Unit say anything in the SideChat:
+UnitName sidechat "TEXT"
+
+Unit will not fire (only works in the 3D Editor)(Open the 3D Editor with ALT+E):
+This dontfire
+
+Destroyer (ship) this setPosASL [getPos this select 0, this getPos
+select 1, 0]; this setdir (GETDIR this);
+
+(Aircraft) stand on boat: this setPosASL [getPos this select 0,
+getPos this select 1, 16]
+
+UAV Key: this setBehaviour "CARELESS"; this setCombatMode
+"GREEN", this flyInHeight 500
+
+Scud targeting: readytofire = 1 [scud1, 1.10] exec "scud_aitarget.sqs"
+
+Player scud targeting: [........] exec "scud_playertarget.sqs"
+
+Scud firing mode: scud_launcher setVariable ["mando_scud_type", 2];
+
+Flight height adjustable: this flyInHeight 300;
+
+Folding of the rotor wing: [this] exec "\ gac_USMC_MH53E \ script \ MH53fold.sqs"
+
+Tell that to a foreign person in the (boat or ...) to enter
+: This moveInCargo Plane1
+
+Heli helo pack almost opeing waypoints / script: nul = [helo, 30, "move1.sqs"] execVM "\ ad_helos \ FastRope \ scripts \ fast_rope_AI_pilot.sqf"
+
+IED (vehicle, person, bomb civilians) Waypoint (in a one or sricpt do in a trigger = bomb = "Bo_GBU12_LGB" createvehicle [(IED getPos select 0), (select 1 getPos IED), 0]
+
+Parachute jump: this setpos [getpos this select 0, getpos select this one, (getpos this select 2) +1000]; this flyinheight 1000; this setvelocity [0,0,0], [this] exec "ca \ air2 \ halo \ data \ scripts \ Halo_init.sqs "
+
+Weapons have been changed at the beginning: this addWeapon 'MP5SD'; this addMagazine '30Rnd_9x19_MP5SD '
+
+HQ support in release and provide mehrfack aif + spark Alpha:
+ [["Transport", "aerial_reconnaissance", "supply_drop", "tactical_airstrike" "artillery_barrage"] player] BIS_SOM_addSupportRequestFunc call;
+ 
+_null=[this] spawn {_unit = _this select 0; _marker = createMarker ["Alpha1", getPosASL _unit]; _marker setMarkerType "Start"; _marker setMarkerColor "ColorBlue"; _marker setMarkerText "1"; _marker setMarkerSize [.5,.5]; while {alive _unit} do  { _marker setMarkerPos getPos _unit; _marker setMarkerDir getDir _unit; sleep 0.5;  };};this setIdentity "WFHQ_EN1_EP1";
+
+setIdentity in respawn eventhandler
