@@ -1,0 +1,216 @@
+------------------------------------------------------------------
+ReadMe text file
+Created by: RALPH BELL AMI
+------------------------------------------------------------------
+BIS_EVO_Repair = 
+{
+	_vec = (vehicle player);
+	_type = typeOf vehicle player;
+	if(getDammage _vec > 0 or fuel _vec < 0.98 and not (_vec isKindOf "Man")) then
+	{
+		_inrepairzone = ((_vec in list AirportIn) or (_vec in list farp1) or (_vec in list farp2) or (_vec in list farp3) or (_vec in list reng1) or (_vec in list reng2) or (_vec in list reng3) or (_vec in list reng4) or (_vec in list dock1) or (_vec in list dock2));
+		if(((_vec in list AirportIn) or (_vec in list farp1) or (_vec in list farp2) or (_vec in list farp3) or (_vec in list reng1) or (_vec in list reng2) or (_vec in list reng3) or (_vec in list reng4) or (_vec in list dock1) or (_vec in list dock2)) and _vec != player and speed _vec > -2 and speed _vec < 2 and position _vec select 2 < 2.0 and (local _vec)) then
+		{
+
+			 titleText [localize "STR_M04t83", "PLAIN DOWN",0.3];
+			 for [{_loop2=0}, {_loop2<1}, {_loop2=_loop2}] do
+			 {
+			    sleep 0.200;	    		    
+			    if (getDammage _vec > 0) then {_vec setDammage ((getDammage _vec)-0.0125);};
+			    if (Fuel _vec < 1) then {_vec setFuel ((Fuel _vec)+0.0125);};
+			    if (getDammage _vec == 0 and Fuel _vec == 1) then {_loop2=1;};
+			    if(_vec != vehicle player or speed _vec < -2 or speed _vec > 2 or position _vec select 2 > 2.0) then {_loop2=1;titleText [localize "STR_M04t84", "PLAIN DOWN",0.3];};
+			    _dam = (getDammage _vec)*100;
+			    _ful = (Fuel _vec)*100;
+			    hint format["Damage: %1\nFuel: %2",Round _dam,Round _ful];
+			};
+			_vec setVehicleAmmo 1;	
+//adding cheats to planes
+			if(_type == "A10") then 
+			{
+				_weapons = weapons _vec;
+				if(not ("Mk82BombLauncher_6" in _weapons)) then {_vec addweapon "Mk82BombLauncher_6"};
+				_vec removeMagazine "6Rnd_Mk82";
+				_vec addMagazine "6Rnd_Mk82";
+				_vec removeMagazine "1350Rnd_30mmAP_A10";
+				_vec removeMagazine "1350Rnd_30mmAP_A10";
+				_vec addMagazine "1350Rnd_30mmAP_A10";
+				_vec addMagazine "1350Rnd_30mmAP_A10";
+				_vec removeMagazine "2Rnd_Maverick_A10";
+				_vec removeMagazine "2Rnd_Maverick_A10";
+				_vec addMagazine "2Rnd_Maverick_A10";
+				_vec addMagazine "2Rnd_Maverick_A10";
+				if(("FFARLauncher_14" in _weapons)) then {_vec removeweapon "FFARLauncher_14"};
+				_vec removeMagazine "14Rnd_FFAR";
+				if(not ("FFARLauncher" in _weapons)) then {_vec addweapon "FFARLauncher"};
+				_vec removeMagazine "38Rnd_FFAR";
+				_vec removeMagazine "38Rnd_FFAR";
+				_vec addMagazine "38Rnd_FFAR";
+				_vec addMagazine "38Rnd_FFAR";
+			};
+
+			if(_type == "F35B") then 
+			{
+				_weapons = weapons _vec;
+				if(("SidewinderLaucher_F35" in _weapons)) then {_vec removeweapon "SidewinderLaucher_F35"; _vec removeMagazine "2Rnd_Sidewinder_F35"};
+				if(not ("SidewinderLaucher" in _weapons)) then {_vec addweapon "SidewinderLaucher"};
+				_vec removeMagazine "4Rnd_Sidewinder_AV8B";
+				_vec removeMagazine "4Rnd_Sidewinder_AV8B";
+				_vec addMagazine "4Rnd_Sidewinder_AV8B";
+				_vec addMagazine "4Rnd_Sidewinder_AV8B";
+
+				_vec removeMagazine "300Rnd_25mm_GAU12";
+				_vec removeMagazine "300Rnd_25mm_GAU12";
+				_vec removeMagazine "300Rnd_25mm_GAU12";
+				_vec addMagazine "300Rnd_25mm_GAU12";
+				_vec addMagazine "300Rnd_25mm_GAU12";
+				_vec addMagazine "300Rnd_25mm_GAU12";
+			};	
+			if(_type == "AV8B") then 
+			{
+				_weapons = weapons _vec;
+				if(not ("MaverickLauncher" in _weapons)) then {_vec addweapon "MaverickLauncher"};
+				_vec removeMagazine "2Rnd_Maverick_A10";
+				_vec removeMagazine "2Rnd_Maverick_A10";
+				_vec removeMagazine "2Rnd_Maverick_A10";
+				_vec addMagazine "2Rnd_Maverick_A10";
+				_vec addMagazine "2Rnd_Maverick_A10";
+				_vec addMagazine "2Rnd_Maverick_A10";
+				if(not ("SidewinderLaucher" in _weapons)) then {_vec addweapon "SidewinderLaucher"};
+				_vec removeMagazine "4Rnd_Sidewinder_AV8B";
+				_vec addMagazine "4Rnd_Sidewinder_AV8B";
+				if(not ("57mmLauncher" in _weapons)) then {_vec addweapon "57mmLauncher"};
+				_vec removeMagazine "192Rnd_57mm";
+				_vec addMagazine "192Rnd_57mm";
+			};			
+			if(_type == "AV8B2") then 
+			{
+				_weapons = weapons _vec;
+				if(not ("HellfireLauncher" in _weapons)) then {_vec addweapon "HellfireLauncher"};
+				_vec removeMagazine "8Rnd_Hellfire";
+				_vec addMagazine "8Rnd_Hellfire";
+				_vec removeMagazine "14Rnd_FFAR";
+				_vec removeMagazine "14Rnd_FFAR";
+				_vec addMagazine "14Rnd_FFAR";
+				_vec addMagazine "14Rnd_FFAR";
+			};
+			if(_type == "MH60S") then 
+			{
+				_weapons = weapons _vec;
+				if(not ("GAU12" in _weapons)) then {_vec addweapon "GAU12"};
+				_vec removeMagazine "300Rnd_25mm_GAU12";
+				_vec addMagazine "300Rnd_25mm_GAU12";
+			};			
+			if(_type == "UH1Y") then 
+			{
+				_weapons = weapons _vec;
+				_vec removeMagazine "14Rnd_FFAR";
+				_vec removeMagazine "14Rnd_FFAR";
+				_vec removeMagazine "14Rnd_FFAR";
+				_vec removeMagazine "14Rnd_FFAR";
+				_vec addMagazine "14Rnd_FFAR";
+				_vec addMagazine "14Rnd_FFAR";
+				_vec addMagazine "14Rnd_FFAR";
+				_vec addMagazine "14Rnd_FFAR";
+			};			
+			
+			if(_type == "MV22") then 
+			{
+				_weapons = weapons _vec;
+				if(not ("HellfireLauncher" in _weapons)) then {_vec addweapon "HellfireLauncher"};
+				_vec removeMagazine "8Rnd_Hellfire";
+				_vec addMagazine "8Rnd_Hellfire";
+				if(not ("GAU12" in _weapons)) then {_vec addweapon "GAU12"};
+				_vec removeMagazine "300Rnd_25mm_GAU12";
+				_vec addMagazine "300Rnd_25mm_GAU12";
+/*
+				if(not ("HeliBombLauncher" in _weapons)) then {_vec addweapon "HeliBombLauncher"};
+				_vec removeMagazine "2Rnd_FAB_250";
+				_vec addMagazine "2Rnd_FAB_250";
+*/
+				if(not ("AirBombLauncher" in _weapons)) then {_vec addweapon "AirBombLauncher"};
+				_vec removeMagazine "4Rnd_FAB_250";
+				_vec addMagazine "4Rnd_FAB_250";
+				if(not ("FFARLauncher" in _weapons)) then {_vec addweapon "FFARLauncher"};
+				_vec removeMagazine "38Rnd_FFAR";
+				_vec removeMagazine "38Rnd_FFAR";
+				_vec addMagazine "38Rnd_FFAR";
+				_vec addMagazine "38Rnd_FFAR";
+
+			};		
+			if(_type == "C130J") then 
+			{
+				_weapons = weapons _vec;
+				if(not ("SidewinderLaucher" in _weapons)) then {_vec addweapon "SidewinderLaucher"};
+				_vec removeMagazine "4Rnd_Sidewinder_AV8B";
+				_vec removeMagazine "4Rnd_Sidewinder_AV8B";
+				_vec removeMagazine "4Rnd_Sidewinder_AV8B";
+				_vec addMagazine "4Rnd_Sidewinder_AV8B";
+				_vec addMagazine "4Rnd_Sidewinder_AV8B";
+				_vec addMagazine "4Rnd_Sidewinder_AV8B";
+
+				if(not ("GSh302" in _weapons)) then {_vec addweapon "GSh302"};
+				_vec removeMagazine "750Rnd_30mm_GSh301";
+				_vec removeMagazine "750Rnd_30mm_GSh301";
+				_vec removeMagazine "750Rnd_30mm_GSh301";
+				_vec addMagazine "750Rnd_30mm_GSh301";
+				_vec addMagazine "750Rnd_30mm_GSh301";
+				_vec addMagazine "750Rnd_30mm_GSh301";
+				if(not ("AirBombLauncher" in _weapons)) then {_vec addweapon "AirBombLauncher"};
+				_vec removeMagazine "4Rnd_FAB_250";
+				_vec removeMagazine "4Rnd_FAB_250";
+				_vec removeMagazine "4Rnd_FAB_250";
+				_vec removeMagazine "4Rnd_FAB_250";
+				_vec removeMagazine "4Rnd_FAB_250";
+				_vec removeMagazine "4Rnd_FAB_250";
+				_vec addMagazine "4Rnd_FAB_250";
+				_vec addMagazine "4Rnd_FAB_250";
+				_vec addMagazine "4Rnd_FAB_250";
+				_vec addMagazine "4Rnd_FAB_250";
+				_vec addMagazine "4Rnd_FAB_250";
+				_vec addMagazine "4Rnd_FAB_250";
+				if(not ("BombLauncher" in _weapons)) then {_vec addweapon "BombLauncher"};
+				_vec removeMagazine "6Rnd_GBU12_AV8B";
+				_vec removeMagazine "6Rnd_GBU12_AV8B";
+				_vec removeMagazine "6Rnd_GBU12_AV8B";
+				_vec addMagazine "6Rnd_GBU12_AV8B";
+				_vec addMagazine "6Rnd_GBU12_AV8B";
+				_vec addMagazine "6Rnd_GBU12_AV8B";
+				if(not ("S8Launcher" in _weapons)) then {_vec addweapon "S8Launcher"};
+				_vec removeMagazine "80Rnd_80mm";
+				_vec removeMagazine "80Rnd_80mm";
+				_vec removeMagazine "80Rnd_80mm";
+				_vec addMagazine "80Rnd_80mm";
+				_vec addMagazine "80Rnd_80mm";
+				_vec addMagazine "80Rnd_80mm";
+				if(not ("VikhrLauncher" in _weapons)) then {_vec addweapon "VikhrLauncher"};
+				_vec removeMagazine "12Rnd_Vikhr_KA50";
+				_vec removeMagazine "12Rnd_Vikhr_KA50";
+				_vec addMagazine "12Rnd_Vikhr_KA50";
+				_vec addMagazine "12Rnd_Vikhr_KA50";
+			};			
+			if(_type == "AH64D") then 
+			{
+				_weapons = weapons _vec;
+				if(not ("SidewinderLaucher" in _weapons)) then {_vec addweapon "SidewinderLaucher"};
+				_vec removeMagazine "4Rnd_Sidewinder_AV8B";
+				_vec addMagazine "4Rnd_Sidewinder_AV8B";
+			};	
+			if(_type == "AH64D_Sidewinders") then 
+			{
+				_weapons = weapons _vec;
+				_vec removeMagazine "38Rnd_FFAR";
+				_vec removeMagazine "38Rnd_FFAR";
+				_vec removeMagazine "38Rnd_FFAR";
+				_vec addMagazine "38Rnd_FFAR";
+				_vec addMagazine "38Rnd_FFAR";
+				_vec addMagazine "38Rnd_FFAR";
+				if(not ("AirBombLauncher" in _weapons)) then {_vec addweapon "AirBombLauncher"};
+				_vec removeMagazine "4Rnd_FAB_250";
+				_vec addMagazine "4Rnd_FAB_250";
+
+			};	
+	
+		};
+	};
+};
