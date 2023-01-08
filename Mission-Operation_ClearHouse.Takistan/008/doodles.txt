@@ -1,0 +1,8 @@
+------------------------------------------------------------------
+ReadMe text file
+Created by: RALPH BELL AMI
+------------------------------------------------------------------
+
+deleteVehicle lazeThree; deleteMarkerLocal "TARGET"; targets = nearestObjects[_pos,["LandVehicle","Man"],1000]; target = targets select 0; lazeThree = "LaserTargetW" createVehicle getPos target; lazeThree attachTo [target,[0,0,1]]; createMarkerLocal ["TARGET", target]; "TARGET" setMarkerTypeLocal "select"; "TARGET" setMarkerShapeLocal "Icon";  "TARGET" setMarkerTextLocal "TARGET"; "TARGET" setMarkerSizeLocal [1,1]; target addEventHandler["Killed", {[_this select 0, _this select 1, [lazeThree, "TARGET"]] execVM "laserTargetEH.sqf"}]; lazeThree exec "camera.sqs";
+
+deleteMarkerLocal "TARGET"; targets = nearestObjects[_pos,["LandVehicle","Man"],1000]; target = targets select 0; createMarkerLocal ["TARGET", target]; "TARGET" setMarkerTypeLocal "select"; "TARGET" setMarkerShapeLocal "Icon";  "TARGET" setMarkerTextLocal "TARGET"; "TARGET" setMarkerSizeLocal [1,1]; target addEventHandler["Killed", {[_this select 0, _this select 1, ["TARGET"]] execVM "laserTargetEH.sqf"}]; [target] execvm "snapshot.sqf"; [target] execvm "unitmrkr.sqf"; ["Task10","Hunt Next Target","Hunt and Kill Next Target",player,["Task10",getpos target],"assigned",target] call SHK_Taskmaster_add;

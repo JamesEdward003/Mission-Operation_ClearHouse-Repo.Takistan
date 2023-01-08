@@ -1,0 +1,25 @@
+; ****************************************************************
+; Script file for Armed Assault
+; Created by: RALPH BELL AMI
+; ****************************************************************
+; surrender.sqs
+; Original Skript & Idea by Mr-Murray 2006
+; modified for Knock Knock by W0lle
+; 
+; www.mapfact.net
+; www.mr-murray.de.vu
+
+?(!(local server)):exit
+
+_Enemy = _this select 0
+
+? not alive _enemy : exit
+_enemy action ["DROPWEAPON", _enemy, primaryWeapon _enemy]
+~2
+;_Removeall >= 1 : removeallWeapons _enemy
+;_enemy playmove "AmovPercMstpSsurWnonDnon"
+;_enemy setCaptive true
+;_enemy disableAI "ANIM"
+;_enemy disableAI "MOVE"
+
+exit
