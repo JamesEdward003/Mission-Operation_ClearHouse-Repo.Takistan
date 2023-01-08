@@ -1,0 +1,5 @@
+//////////////////////////////////////////////////////////////////
+
+skipTime 3;
+
+player commandChat format["Unit %1 skipped time by 3 hours", name player];

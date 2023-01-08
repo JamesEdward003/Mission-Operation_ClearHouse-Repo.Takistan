@@ -1,0 +1,779 @@
+onLoadMission="U.S. Airfield, Takistan 2012";
+onLoadIntro="Operations-Clear House";
+onLoadIntroTime=true;
+onLoadMissionTime=true;
+loadScreen="Images\Textures\Screens\Loading_Screen01.paa";
+loadScreenText=by Soldier2390 & Konyo;
+onMinimapScript[] = {"BIS_fnc_customGPS_Spawn"};
+onPauseScript = "OnPauseScript.sqf";
+MinScore=0;
+AvgScore=7500;
+MaxScore=15000;
+respawn="BASE";
+respawnDelay=10;
+respawnDialog=1;
+showCompass=1;
+showMap=1;
+showWatch=1;
+ShowGPS=1;
+showNotePad=1;
+briefing=1;
+debriefing=1;
+aiKills=1;
+disabledAI=0;
+enableTeamSwitch = 1;
+enableItemsDropping = 0;
+
+#include "bon_loadoutpresets\dialog\Common.hpp"
+#include "bon_loadoutpresets\dialog\LoadoutPreset.hpp"
+#include "bon_getbackpack\dialog\getbackpack.hpp"
+
+class Header
+{
+	gameType=Coop;
+	minPlayers=1;
+	maxPlayers=10;
+};
+class Params
+{
+   class Day_Time
+   {
+		title = "Time Of Day:";
+		values[] = {1, 2, 3, 4, 5, 6, 7, 8};
+		texts[] = {"Random", "Early Morning", "Morning", "Noon", "Sundown", "Early Evening", "Night with Full Moon", "Dark Night"};     
+      default = 2;
+	};
+	class Weather
+   {
+      title = "Weather:";
+      values[] = {1, 2, 3, 4, 5, 6};
+      texts[] = {"Random", "Clear", "Partly Cloudy", "Cloudy", "Overcast", "Storm"};     
+      default = 5;
+	};
+	class FogParam
+   {
+      title = "Fog:";
+      values[] = {1, 2, 3, 4, 5, 6};
+      texts[] = {"Random", "Clear", "Thin", "Thick", "Thicker", "Dense"};     
+      default = 3;
+	};
+	class WindDirection      
+	{
+		title = "Wind Direction:";
+		values[] = {1, 2, 3, 4, 5, 6, 7, 8};
+		texts[] = {"North","NorthEast","East","SouthEast","South","SouthWest","West","NorthWest"};
+		default = 7;
+	};
+	class WindStrength      
+	{
+		title = "Wind Strength:";
+		values[] = {1, 2, 3, 4, 5, 6, 7, 8};
+		texts[] = {"Dead Still","Whisper","Gentle Breeze","Moderate Breeze","Strong Breeze","High Winds","Near Gale","Gale Force"};
+		default = 7;
+	};
+};
+class CfgSounds
+{
+	sounds[] = {Trophy,Gunshot,Sirena,ThunderStruck,HellsBells};
+class Trophy
+	{
+		name = "Trophy"; 
+		sound[] = {"\Sounds\Trophy.ogg", 1, 1};
+		titles[] = { };
+	};	
+class Gunshot
+	{
+		name = "Gunshot"; 
+		sound[] = {"\Sounds\Gunshot.ogg", 1, 1};
+		titles[] = { };
+	};
+class Sirena
+	{
+		name = "Sirena";
+		sound[] = {"\Sounds\Sirena.ogg",db+1, 1};
+		titles[] = {1, ""};
+	};
+class ThunderStruck
+	{
+		name = "ThunderStruck";
+		sound[] = {"\Sounds\ThunderStruck.ogg",db+10, 1};
+		titles[] = {1, ""};
+	};
+class HellsBells
+	{
+		name = "HellsBells";
+		sound[] = {"\Sounds\HellsBells.ogg",db+10, 1};
+		titles[] = {1, ""};
+	};
+};
+class CfgMusic
+{
+	tracks[] = {FortunateSon,FortunateSon2,BornOnTheBayou,GoodGollyMissMolly,KeepOnChooglin,RunThroughTheJungle,AM92Intro,DownTheNile,DidYouEverHavetoMakeupYourMind,DirtyCity,TheMagdaleneLaundries,UpontheRoof,Thunderstruck,HellsBells};
+class FortunateSon
+	{
+		name = "FortunateSon"; 
+		sound[] = {"\music\FortunateSon.ogg", db+10, 0.99, 900};
+	};
+class FortunateSon2
+	{
+		name = "FortunateSon2"; 
+		sound[] = {"\music\FortunateSon2.ogg", db+1, 1.0};
+	};
+class BornOnTheBayou
+	{
+		name = "BornOnTheBayou"; 
+		sound[] = {"\music\BornOnTheBayou.ogg", db+1, 1.0};
+	};
+class GoodGollyMissMolly
+	{
+		name = "GoodGollyMissMolly"; 
+		sound[] = {"\music\GoodGollyMissMolly.ogg", db+10, 1.0};
+	};
+class KeepOnChooglin
+	{
+		name = "KeepOnChooglin"; 
+		sound[] = {"\music\KeepOnChooglin.ogg", db+1, 1.0};
+	};
+class RunThroughTheJungle
+	{
+		name = "RunThroughTheJungle"; 
+		sound[] = {"\music\RunThroughTheJungle.ogg", db+1, 1.0};
+	};
+	
+class AM92Intro
+	{
+		name = "AM92Intro";
+		sound[] = {"\music\AM92Intro.ogg", db+0, 1.0};
+	};
+class DownTheNile
+	{
+		name = "DownTheNile";
+		sound[] = {"\music\DownTheNile.ogg", db+0, 1.0};
+	};
+class DidYouEverHavetoMakeupYourMind
+	{
+		name = "DidYouEverHavetoMakeupYourMind";
+		sound[] = {"\music\DidYouEverHavetoMakeupYourMind.ogg", db+0, 1.0};
+	};
+class DirtyCity
+	{
+		name = "DirtyCity";
+		sound[] = {"\music\DirtyCity.ogg", db+0, 1.0};
+	};
+class TheMagdaleneLaundries
+	{
+		name = "TheMagdaleneLaundries";
+		sound[] = {"\music\TheMagdaleneLaundries.ogg", db+0, 1.0};
+	};
+class UpontheRoof
+	{
+		name = "UpontheRoof";
+		sound[] = {"\music\UpontheRoof.ogg", db+0, 1.0};
+	};
+class Thunderstruck
+	{
+		name = "Thunderstruck"; 
+		sound[] = {"\music\Thunderstruck.ogg", db+10, 1.0};
+	};
+class HellsBells
+	{
+		name = "HellsBells"; 
+		sound[] = {"\music\HellsBells.ogg", db+10, 1.0};
+	};
+};
+class CfgIdentities
+{
+	class Alpha1_1
+	{
+		name="Phillipes (Alpha 1-1)";
+		face="face05";
+		glasses="Tactical";
+		speaker="Male03EN";
+		pitch=0.97;
+	};
+	class Alpha1_2
+	{
+		name="Sanchez (Alpha 1-2)";
+		face="face01";
+		glasses="Delta_Glasses";
+		speaker="Male05EN";
+		pitch=0.97;
+	};
+	class Alpha1_3
+	{
+		name="Clark (Alpha 1-3)";
+		face="face02";
+		glasses="Tactical";
+		speaker="Male04EN";
+		pitch=0.97;
+	};
+	class Alpha1_4
+	{
+		name="Ramirez (Alpha 1-4)";
+		face="face03";
+		glasses="Delta_Glasses";
+		speaker="Male03EN";
+		pitch=0.97;
+	};
+	class Alpha1_5
+	{
+		name="Lewis (Alpha 1-5)";
+		face="face04";
+		glasses="Tactical";
+		speaker="Male04EN";
+		pitch=0.97;
+	};
+	class Alpha1_6
+	{
+		name="Robinson (Alpha 1-6)";
+		face="face01";
+		glasses="Delta_Glasses";
+		speaker="Male04EN";
+		pitch=0.97;
+	};
+	class Bravo1_1
+	{
+		name="Helmick (Bravo 1-1)";
+		face="face05";
+		glasses="Tactical";
+		speaker="Male03EN";
+		pitch=0.97;
+	};
+	class Bravo1_2
+	{
+		name="Walker (Bravo 1-2)";
+		face="face01";
+		glasses="Delta_Glasses";
+		speaker="Male05EN";
+		pitch=0.97;
+	};
+	class Bravo1_3
+	{
+		name="Young (Bravo 1-3)";
+		face="face02";
+		glasses="Tactical";
+		speaker="Male04EN";
+		pitch=0.97;
+	};
+	class Bravo1_4
+	{
+		name="Allen (Bravo 1-4)";
+		face="face03";
+		glasses="Delta_Glasses";
+		speaker="Male03EN";
+		pitch=0.97;
+	};
+	class Bravo1_5
+	{
+		name="Wright (Bravo 1-5)";
+		face="face04";
+		glasses="Tactical";
+		speaker="Male04EN";
+		pitch=0.97;
+	};
+	class Bravo1_6
+	{
+		name="Scott (Bravo 1-6)";
+		face="face01";
+		glasses="Delta_Glasses";
+		speaker="Male04EN";
+		pitch=0.97;
+	};
+	class Charlie1_1
+	{
+		name="King (Charlie 1-1)";
+		face="face05";
+		glasses="Tactical";
+		speaker="Male03EN";
+		pitch=0.97;
+	};
+	class Charlie1_2
+	{
+		name="Hill (Charlie 1-2)";
+		face="face01";
+		glasses="Delta_Glasses";
+		speaker="Male05EN";
+		pitch=0.97;
+	};
+	class Charlie1_3
+	{
+		name="Flores (Charlie 1-3)";
+		face="face02";
+		glasses="Tactical";
+		speaker="Male04EN";
+		pitch=0.97;
+	};
+	class Charlie1_4
+	{
+		name="Green (Charlie 1-4)";
+		face="face03";
+		glasses="Delta_Glasses";
+		speaker="Male03EN";
+		pitch=0.97;
+	};
+	class Charlie1_5
+	{
+		name="Adams (Charlie 1-5)";
+		face="face04";
+		glasses="Tactical";
+		speaker="Male04EN";
+		pitch=0.97;
+	};
+	class Charlie1_6
+	{
+		name="Nelson (Charlie 1-6)";
+		face="face01";
+		glasses="Delta_Glasses";
+		speaker="Male04EN";
+		pitch=0.97;
+	};
+	class Delta1_1
+	{
+		name="Mcknight (Delta 1-1)";
+		face="face05";
+		glasses="Tactical";
+		speaker="Male03EN";
+		pitch=0.97;
+	};
+	class Delta1_2
+	{
+		name="Baker (Delta 1-2)";
+		face="face01";
+		glasses="Delta_Glasses";
+		speaker="Male05EN";
+		pitch=0.97;
+	};
+	class Delta1_3
+	{
+		name="Hall (Delta 1-3)";
+		face="face02";
+		glasses="Tactical";
+		speaker="Male04EN";
+		pitch=0.97;
+	};
+	class Delta1_4
+	{
+		name="Rivera (Delta 1-4)";
+		face="face03";
+		glasses="Delta_Glasses";
+		speaker="Male03EN";
+		pitch=0.97;
+	};
+	class Delta1_5
+	{
+		name="Campbell (Delta 1-5)";
+		face="face04";
+		glasses="Tactical";
+		speaker="Male04EN";
+		pitch=0.97;
+	};
+	class Delta1_6
+	{
+		name="Mitchell (Delta 1-6)";
+		face="face01";
+		glasses="Delta_Glasses";
+		speaker="Male04EN";
+		pitch=0.97;
+	};
+	class Echo1_1
+	{
+		name="Carter (Echo 1-1)";
+		face="face05";
+		glasses="Tactical";
+		speaker="Male03EN";
+		pitch=0.97;
+	};
+	class Echo1_2
+	{
+		name="Roberts (Echo 1-2)";
+		face="face01";
+		glasses="Delta_Glasses";
+		speaker="Male05EN";
+		pitch=0.97;
+	};
+	class Kilo6_1_1
+	{
+		name="Pilot (Kilo 6-1)";
+		face="face01";
+		glasses="Tactical";
+		speaker="Male03EN";
+		pitch=0.97;
+	};
+	class Kilo6_1_2
+	{
+		name="Crew Chief (Kilo 6-1)";
+		face="face02";
+		glasses="Tactical";
+		speaker="Male04EN";
+		pitch=0.97;
+	};
+	class Kilo6_1_3
+	{
+		name="Gunner Right (Kilo 6-1)";
+		face="face03";
+		glasses="Tactical";
+		speaker="Male05EN";
+		pitch=0.97;
+	};
+	class Kilo6_1_4
+	{
+		name="CoPilot (Kilo 6-1)";
+		face="face04";
+		glasses="Tactical";
+		speaker="Male03EN";
+		pitch=0.97;
+	};
+	class Kilo6_1_5
+	{
+		name="Loadmaster (Kilo 6-1)";
+		face="face05";
+		glasses="Tactical";
+		speaker="Male04EN";
+		pitch=0.97;
+	};
+	class Kilo6_1_6
+	{
+		name="Back Crew (Kilo 6-1)";
+		face="face06";
+		glasses="Tactical";
+		speaker="Male05EN";
+		pitch=0.97;
+	};
+	class Kilo6_2_1
+	{
+		name="Pilot (Kilo 6-2)";
+		face="face01";
+		glasses="Tactical";
+		speaker="Male03EN";
+		pitch=0.97;
+	};
+	class Kilo6_2_2
+	{
+		name="Crew Chief (Kilo 6-2)";
+		face="face02";
+		glasses="Tactical";
+		speaker="Male04EN";
+		pitch=0.97;
+	};
+	class Kilo6_2_3
+	{
+		name="Gunner Right (Kilo 6-2)";
+		face="face03";
+		glasses="Tactical";
+		speaker="Male05EN";
+		pitch=0.97;
+	};
+	class Kilo6_2_4
+	{
+		name="CoPilot (Kilo 6-2)";
+		face="face04";
+		glasses="Tactical";
+		speaker="Male03EN";
+		pitch=0.97;
+	};
+	class Kilo6_2_5
+	{
+		name="Loadmaster (Kilo 6-2)";
+		face="face05";
+		glasses="Tactical";
+		speaker="Male04EN";
+		pitch=0.97;
+	};
+	class Kilo6_2_6
+	{
+		name="Back Crew (Kilo 6-2)";
+		face="face06";
+		glasses="Tactical";
+		speaker="Male05EN";
+		pitch=0.97;
+	};
+	class Kilo6_3_1
+	{
+		name="Pilot (Kilo 6-3)";
+		face="face01";
+		glasses="Tactical";
+		speaker="Male03EN";
+		pitch=0.97;
+	};
+	class Kilo6_3_2
+	{
+		name="Crew Chief (Kilo 6-3)";
+		face="face02";
+		glasses="Tactical";
+		speaker="Male04EN";
+		pitch=0.97;
+	};
+	class Kilo6_3_3
+	{
+		name="Gunner Right (Kilo 6-3)";
+		face="face03";
+		glasses="Tactical";
+		speaker="Male05EN";
+		pitch=0.97;
+	};
+	class Kilo6_3_4
+	{
+		name="CoPilot (Kilo 6-3)";
+		face="face04";
+		glasses="Tactical";
+		speaker="Male03EN";
+		pitch=0.97;
+	};
+	class Kilo6_3_5
+	{
+		name="Loadmaster (Kilo 6-3)";
+		face="face05";
+		glasses="Tactical";
+		speaker="Male04EN";
+		pitch=0.97;
+	};
+	class Kilo6_3_6
+	{
+		name="Back Crew (Kilo 6-3)";
+		face="face06";
+		glasses="Tactical";
+		speaker="Male05EN";
+		pitch=0.97;
+	};
+	class Kilo6_4_1
+	{
+		name="Pilot (Kilo 6-4)";
+		face="face01";
+		glasses="Tactical";
+		speaker="Male03EN";
+		pitch=0.97;
+	};
+	class Kilo6_4_2
+	{
+		name="Crew Chief (Kilo 6-4)";
+		face="face02";
+		glasses="Tactical";
+		speaker="Male04EN";
+		pitch=0.97;
+	};
+	class Kilo6_4_3
+	{
+		name="Gunner Right (Kilo 6-4)";
+		face="face03";
+		glasses="Tactical";
+		speaker="Male05EN";
+		pitch=0.97;
+	};
+	class Kilo6_4_4
+	{
+		name="CoPilot (Kilo 6-4)";
+		face="face04";
+		glasses="Tactical";
+		speaker="Male03EN";
+		pitch=0.97;
+	};
+	class Kilo6_4_5
+	{
+		name="Loadmaster (Kilo 6-4)";
+		face="face05";
+		glasses="Tactical";
+		speaker="Male04EN";
+		pitch=0.97;
+	};
+	class Kilo6_4_6
+	{
+		name="Back Crew (Kilo 6-4)";
+		face="face06";
+		glasses="Tactical";
+		speaker="Male05EN";
+		pitch=0.97;
+	};
+	class Kilo6_5_1
+	{
+		name="Pilot (Kilo 6-5)";
+		face="face01";
+		glasses="Tactical";
+		speaker="Male03EN";
+		pitch=0.97;
+	};
+	class Kilo6_5_2
+	{
+		name="Crew Chief (Kilo 6-5)";
+		face="face02";
+		glasses="Tactical";
+		speaker="Male04EN";
+		pitch=0.97;
+	};
+	class Kilo6_5_3
+	{
+		name="Gunner Right (Kilo 6-5)";
+		face="face03";
+		glasses="Tactical";
+		speaker="Male05EN";
+		pitch=0.97;
+	};
+	class Kilo6_5_4
+	{
+		name="CoPilot (Kilo 6-5)";
+		face="face04";
+		glasses="Tactical";
+		speaker="Male03EN";
+		pitch=0.97;
+	};
+	class Kilo6_5_5
+	{
+		name="Loadmaster (Kilo 6-5)";
+		face="face05";
+		glasses="Tactical";
+		speaker="Male04EN";
+		pitch=0.97;
+	};
+	class Kilo6_5_6
+	{
+		name="Back Crew (Kilo 6-5)";
+		face="face06";
+		glasses="Tactical";
+		speaker="Male05EN";
+		pitch=0.97;
+	};
+		class Pyro1
+	{
+		name="Pyro Crew (Pyro 1)";
+		face="face01";
+		glasses="Tactical";
+		speaker="Male03EN";
+		pitch=0.97;
+	};
+	class Pyro2
+	{
+		name="Pyro Crew (Pyro 2)";
+		face="face02";
+		glasses="Tactical";
+		speaker="Male04EN";
+		pitch=0.97;
+	};
+	class Pyro3
+	{
+		name="Pyro Crew (Pyro 3)";
+		face="face03";
+		glasses="Tactical";
+		speaker="Male05EN";
+		pitch=0.97;
+	};
+	class Pyro4
+	{
+		name="Pyro Crew (Pyro 4)";
+		face="face04";
+		glasses="Tactical";
+		speaker="Male03EN";
+		pitch=0.97;
+	};
+	class Pyro5
+	{
+		name="Pyro Crew (Pyro 5)";
+		face="face05";
+		glasses="Tactical";
+		speaker="Male04EN";
+		pitch=0.97;
+	};
+	class Pyro6
+	{
+		name="Pyro Crew (Pyro 6)";
+		face="face06";
+		glasses="Tactical";
+		speaker="Male05EN";
+		pitch=0.97;
+	};
+	class Pyro7
+	{
+		name="Pyro Crew (Pyro 7)";
+		face="face03";
+		glasses="Tactical";
+		speaker="Male03EN";
+		pitch=0.97;
+	};
+	class Command1
+	{
+		name="Powell (Command1)";
+		face="face01";
+		glasses="none";
+		speaker="Male03EN";
+		pitch=0.98;
+	};
+	class Miles
+	{
+		name="Miles (Razor1)";
+		face="default";
+		glasses="none";
+		speaker="Male05EN";
+		pitch=0.98;
+	};
+	class Cooper
+	{
+		name="Cooper (Razor2)";
+		face="default";
+		glasses="none";
+		speaker="Male05EN";
+		pitch=0.98;
+	};
+	class Sykes
+	{
+		name="Sykes (Razor3)";
+		face="default";
+		glasses="none";
+		speaker="Male04EN";
+		pitch=0.98;
+	};
+	class Rodriguez
+	{
+		name="Rodriguez (Razor4)";
+		face="default";
+		glasses="none";
+		speaker="Male03EN";
+		pitch=0.98;
+	};
+	class Ohara
+	{
+		name="Ohara (Razor5)";
+		face="default";
+		glasses="none";
+		speaker="Male03EN";
+		pitch=0.98;
+	};
+	class Venom1_1
+	{
+		name="Krenshaw (Venom1)";
+		face="face01";
+		glasses="none";
+		speaker="Male03EN";
+		pitch=0.99;
+	};
+	class Venom1_2
+	{
+		name="Brady (Venom2)";
+		face="face02";
+		glasses="none";
+		speaker="Male05EN";
+		pitch=0.99;
+	};
+	class Venom1_3
+	{
+		name="Stewart (Venom3)";
+		face="face03";
+		glasses="none";
+		speaker="Male04EN";
+		pitch=0.99;
+	};
+	class Venom1_4
+	{
+		name="Westfall (Venom4)";
+		face="face04";
+		glasses="none";
+		speaker="Male03EN";
+		pitch=0.99;
+	};
+	class Venom1_5
+	{
+		name="Grady (Venom5)";
+		face="face05";
+		glasses="none";
+		speaker="Male04EN";
+		pitch=0.99;
+	};
+};
+

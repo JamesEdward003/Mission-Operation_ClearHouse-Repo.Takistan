@@ -1,0 +1,8 @@
+//////////////////////////////////////////////////////////////////
+// Function file for Armed Assault
+// Created by: RALPH BELL AMI
+// null = [this] execVM "flare.sqf";
+//////////////////////////////////////////////////////////////////
+_unit = _this select 0;
+
+_flare = "F_40mm_White" createVehicle (_unit modelToWorld [0, 0, 250]);
