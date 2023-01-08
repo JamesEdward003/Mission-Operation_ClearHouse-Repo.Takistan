@@ -1,0 +1,57 @@
+Simple  Guard  Post Script v1.0
+by Tophe of Östgöta Ops [OOPS]
+---------------------------------
+
+This script will have the AI look around instead of just looking in one direction. 
+Putting this on a searchlight really add to the immersion during night missions.
+You may set the range of degrees for the guarding unit.
+It is also possible to set behaviour, stance, hight range and delay.
+
+For support and feedback please go to the BIS forum thread:
+http://forums.bistudio.com/showthread.php?p=1681721
+
+
+
+To run with default settings, just put this in the units init line:
+nul = [this] execVM "GuardPost.sqf"
+
+
+
+OPTIONS:
+There are some optional settings. The format for these are:
+nul = [unit, range, behaviour, stance, up/down, delay] execVM "GuardPost.sqf"
+If you set anything the default settings will be used, they look like this:
+nul = [this, 240, "SAFE", "AUTO", false, 1] execVM "GuardPost.sqf"  
+
+
+Range:
+The scanning range of the unit , 0 to 360 degrees. The unit will keep it's original direction as middle and scan. 
+So if you have a guard with azimut 0, and want it to scan 180 degrees - the unit will be looking between 
+270  and 90  degrees (90 degrees in each direction).
+Example: nul = [this,180] execVM "GuardPost.sqf"
+
+Behaviour:
+Set the starting behaviour of the unit.  Possible settings are CARELESS, SAFE, AWARE, COMBAR, STEALTH.
+If you want the unit to have his weapon rested while looking, set it to SAFE. If you want the unit to aim while
+looking  set it to "COMBAT".  You must use quotations.
+Example: nul = [this,180,"COMBAT"] execVM "GuardPost.sqf"
+
+Stance:
+You may force the unit to stay in a certain stance with this setting.
+Possible settings are:
+UP - the unit will keep standing even when being shot at. Good for towers.
+MIDDLE - the unit will stay kneeling.  Good for units behind standard sand bag walls.
+DOWN - the unit will stay in prone position. Good for snipers etc.
+AUTO - the unit will change stance according to the situation.
+Example:  nul = [this,180,"COMBAT","UP"] execVM "GuardPost.sqf"
+
+Up/Down:
+By default the unit will look straight forward.  By setting this to TRUE  you can have it look upward aswell, on rooftops, hills etc.
+This is very good for search lights, since they will cover a much greater area and also scan for choppers.  
+Possible setting are TRUE or FALSE
+Example:  nul = [this,180,"COMBAT","UP",true] execVM "GuardPost.sqf"
+
+Delay: 
+The unit wait a short moment before changing direction. Here you may enter the shortest amount of time you want for this delay.
+The unit will then wait between this value and the value + 10 seconds.  If you want it to wait between 10 and 20 seconds you enter this...
+Example:  nul = [this,180,"COMBAT","UP",true, 10] execVM "GuardPost.sqf"
