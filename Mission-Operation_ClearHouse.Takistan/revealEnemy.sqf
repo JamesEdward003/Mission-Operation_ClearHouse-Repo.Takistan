@@ -27,15 +27,22 @@ systemChat "Radar Scan in progress...";
 hintSilent parseText format ["<br/><t color='#ff0000' size='1.0'>Radar Scan in progress...</t>"];
 
 _hostiles = [];
-
 for "_i" from 0 to (count _nearestUnits) - 1 do
 {
     _unit = _nearestUnits select _i;
+    _mrkrcolor = switch (side _unit) do 
+      {
+        case WEST:        {"colorblue"};
+        case EAST:        {"colorred"};
+        case RESISTANCE:  {"colorgreen"};
+        case CIVILIAN:    {"coloryellow"};
+        default           {"colorwhite"};
+      };
     if ((side _unit != playerSide) and (side _unit != civilian)) then
     {
         _marker = createMarker [format ["tempMarker_%1",_i], [_unit, _posTolerance, random(360)] call BIS_fnc_relPos];
         _marker setMarkerType "dot";
-        _marker setMarkerColor "ColorRed";
+        _marker setMarkerColor _mrkrcolor;
         _marker setMarkerSize [1.25, 1.25];
         _hostiles = _hostiles + [_i];
 

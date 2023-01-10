@@ -4563,7 +4563,7 @@ class Mission
 	};
 	class Markers
 	{
-		items=29;
+		items=28;
 		class Item0
 		{
 			position[]={10128.292,346.86813,2339.6558};
@@ -4606,21 +4606,13 @@ class Mission
 		};
 		class Item5
 		{
-			position[]={8180.3711,296.04001,1752.7997};
-			name="respawn_vehicle_west";
-			type="mil_dot";
-			colorName="ColorGreen";
-			angle=30;
-		};
-		class Item6
-		{
 			position[]={10055.806,348.24863,2383.9011};
 			name="LZ_Bravo";
 			text=" Landing Zone Bravo";
 			type="hd_objective";
 			colorName="ColorGreen";
 		};
-		class Item7
+		class Item6
 		{
 			position[]={10118.854,342.69107,2243.7583};
 			name="LZ_Delta";
@@ -4628,7 +4620,7 @@ class Mission
 			type="hd_objective";
 			colorName="ColorGreen";
 		};
-		class Item8
+		class Item7
 		{
 			position[]={10279.848,360.81418,2513.8906};
 			name="LZ_Charlie";
@@ -4636,7 +4628,7 @@ class Mission
 			type="hd_objective";
 			colorName="ColorGreen";
 		};
-		class Item9
+		class Item8
 		{
 			position[]={8248.1963,296.04001,2053.4497};
 			name="fin_marker";
@@ -4644,7 +4636,7 @@ class Mission
 			colorName="ColorGreen";
 			angle=150;
 		};
-		class Item10
+		class Item9
 		{
 			position[]={8052.9365,296.04001,1971.8511};
 			name="som_transport";
@@ -4652,149 +4644,125 @@ class Mission
 			colorName="ColorGreen";
 			angle=150;
 		};
-		class Item11
+		class Item10
 		{
 			position[]={8181.2944,296.14001,2080.2002};
 			name="medical_tent_1";
 			type="b_med";
 			angle=150;
 		};
-		class Item12
+		class Item11
 		{
 			position[]={8259.3828,296.04001,2074.446};
 			name="medical_support";
 			type="b_support";
 			angle=150;
 		};
-		class Item13
+		class Item12
 		{
 			position[]={8245.4131,296.04001,2058.5037};
 			name="hq";
 			type="FOB";
 			angle=330;
 		};
-		class Item14
+		class Item13
 		{
 			position[]={7968.9043,296.04001,1979.9261};
 			name="mortar_support";
 			type="b_mortar";
 		};
-		class Item15
+		class Item14
 		{
 			position[]={8106.3809,296.04001,2010.379};
 			name="maintenance";
 			type="b_maint";
 			angle=152;
 		};
-		class Item16
+		class Item15
 		{
 			position[]={8047.4653,296.04001,1981.1798};
 			name="transport";
 			type="b_air";
 			angle=152;
 		};
-		class Item17
+		class Item16
 		{
 			position[]={8188.208,296.04001,1756.8756};
 			name="helicopter_support";
 			type="b_empty";
 			angle=150;
 		};
-		class Item18
+		class Item17
 		{
 			position[]={8139.1299,296.12735,2057.502};
 			name="medical_tent_2";
 			type="b_med";
 			angle=150;
 		};
-		class Item19
+		class Item18
 		{
 			position[]={11096.173,416.77719,2569.6152};
 			name="sniper_red";
-			markerType="ELLIPSE";
 			type="Empty";
 			colorName="ColorRed";
-			a=4;
-			b=4;
 		};
-		class Item20
+		class Item19
 		{
 			position[]={11133.126,411.95758,2427.3174};
 			name="sniper_red_1";
-			markerType="ELLIPSE";
 			type="Empty";
 			colorName="ColorRed";
-			a=4;
-			b=4;
 		};
-		class Item21
+		class Item20
 		{
 			position[]={10606.764,368.23584,2244.2864};
 			name="sniper_red_2";
-			markerType="ELLIPSE";
 			type="Empty";
 			colorName="ColorRed";
-			a=4;
-			b=4;
 		};
-		class Item22
+		class Item21
 		{
 			position[]={10424.654,414.37195,2766.1997};
 			name="sniper_green";
-			markerType="ELLIPSE";
 			type="Empty";
 			colorName="ColorGreen";
-			a=4;
-			b=4;
 		};
-		class Item23
+		class Item22
 		{
 			position[]={9831.3457,352.74811,2488.4189};
 			name="sniper_green_1";
-			markerType="ELLIPSE";
 			type="Empty";
 			colorName="ColorGreen";
-			a=4;
-			b=4;
 		};
-		class Item24
+		class Item23
 		{
 			position[]={9536.1807,324.68509,2268.7676};
 			name="sniper_green_2";
-			markerType="ELLIPSE";
 			type="Empty";
 			colorName="ColorGreen";
-			a=4;
-			b=4;
 		};
-		class Item25
+		class Item24
 		{
 			position[]={8680.5605,401.18781,1415.1117};
 			name="sniper_green_3";
-			markerType="ELLIPSE";
 			type="Empty";
 			colorName="ColorGreen";
-			a=4;
-			b=4;
 		};
-		class Item26
+		class Item25
 		{
 			position[]={7450.2822,302.72864,2268.4968};
 			name="sniper_red_3";
-			markerType="ELLIPSE";
 			type="Empty";
 			colorName="ColorRed";
-			a=4;
-			b=4;
 		};
-		class Item27
+		class Item26
 		{
 			position[]={8000.8911,296.04001,2008.39};
-			name="maintenance_2";
+			name="respawn_vehicle_west";
 			type="b_maint";
 			angle=152;
 		};
-		class Item28
+		class Item27
 		{
 			position[]={8392.7314,296.04001,1920.4408};
 			name="maintenance_2_1";
@@ -4814,7 +4782,7 @@ class Mission
 			interruptable=1;
 			age="UNKNOWN";
 			text="LAUNCH OPERATION!";
-			expActiv="if (!isEngineOn Echo1_AH6J_1) then { Echo1_AH6J_1 engineOn true; (driver Echo1_AH6J_1) action [""engineOn"", Echo1_AH6J_1]; }; if (!isEngineOn Echo1_AH6J_2) then { Echo1_AH6J_2 engineOn true; (driver Echo1_AH6J_2) action [""engineOn"", Echo1_AH6J_2];}; StartedMission = true; publicVariable ""StartedMission"";";
+			expActiv="if (!isEngineOn Echo1_AH6J_1) then { Echo1_AH6J_1 engineOn true; (driver Echo1_AH6J_1) action [""engineOn"", Echo1_AH6J_1]; }; if (!isEngineOn Echo1_AH6J_2) then { Echo1_AH6J_2 engineOn true; (driver Echo1_AH6J_2) action [""engineOn"", Echo1_AH6J_2];}; StartedMission = true; publicVariable ""StartedMission""; _null=[] execVM ""endOperation.sqf"";";
 			class Effects
 			{
 			};
@@ -5045,12 +5013,13 @@ class Mission
 			position[]={8265.9521,363.77097,2894.0581};
 			a=0;
 			b=0;
-			timeoutMin=16;
-			timeoutMid=16;
-			timeoutMax=16;
+			timeoutMin=30;
+			timeoutMid=30;
+			timeoutMax=30;
 			interruptable=1;
 			age="UNKNOWN";
-			expActiv="titleText [""To Start The Mission, Use Your Radio To Launch Operation! '0-0-1' -> 'Radio' -> 'Launch Operation!'"", ""PLAIN DOWN""];";
+			expCond="alive player";
+			expActiv="titleText [""To Start The Mission, Use Your Radio To Launch Operation! '0-0-1' -> 'Radio' -> 'Launch Operation!'"", ""PLAIN""];";
 			class Effects
 			{
 			};

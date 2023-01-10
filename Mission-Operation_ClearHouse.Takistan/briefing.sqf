@@ -60,6 +60,16 @@ switch (group player) do
 		tskRTB setSimpleTaskDescription ["Return to <marker name='fin_marker'>Base</marker> and play the end game.", "Return to Base", "Return to Base"];
 		tskRTB setSimpleTaskDestination (getMarkerPos "fin_marker");
 	};
+	case Venom: 	{
+		tskRTB = player createSimpleTask ["Return to Base"];
+		tskRTB setSimpleTaskDescription ["Return to <marker name='fin_marker'>Base</marker> and play the end game.", "Return to Base", "Return to Base"];
+		tskRTB setSimpleTaskDestination (getMarkerPos "fin_marker");
+	};
+	case Command: 	{
+		tskRTB = player createSimpleTask ["Return to Base"];
+		tskRTB setSimpleTaskDescription ["Return to <marker name='fin_marker'>Base</marker> and play the end game.", "Return to Base", "Return to Base"];
+		tskRTB setSimpleTaskDestination (getMarkerPos "fin_marker");
+	};
 };
 switch (group player) do
 {
@@ -79,6 +89,16 @@ switch (group player) do
 		tskExvillLZ setSimpleTaskDestination (getMarkerPos "LZ_Xray");
 	};
 	case Delta1: 	{
+		tskExvillLZ = player createSimpleTask ["Exvill at LZ Xray"];
+		tskExvillLZ setSimpleTaskDescription ["Secure the Landing Zone that is to the far East of the Village Code Named <marker name='LZ_Xray'>LZ XRAY</marker> and wait for Helo pickup", "Exvill at LZ Xray", "Exvill at LZ XRAY"];
+		tskExvillLZ setSimpleTaskDestination (getMarkerPos "LZ_Xray");
+	};
+	case Venom: 	{
+		tskExvillLZ = player createSimpleTask ["Exvill at LZ Xray"];
+		tskExvillLZ setSimpleTaskDescription ["Secure the Landing Zone that is to the far East of the Village Code Named <marker name='LZ_Xray'>LZ XRAY</marker> and wait for Helo pickup", "Exvill at LZ Xray", "Exvill at LZ XRAY"];
+		tskExvillLZ setSimpleTaskDestination (getMarkerPos "LZ_Xray");
+	};
+	case Command: 	{
 		tskExvillLZ = player createSimpleTask ["Exvill at LZ Xray"];
 		tskExvillLZ setSimpleTaskDescription ["Secure the Landing Zone that is to the far East of the Village Code Named <marker name='LZ_Xray'>LZ XRAY</marker> and wait for Helo pickup", "Exvill at LZ Xray", "Exvill at LZ XRAY"];
 		tskExvillLZ setSimpleTaskDestination (getMarkerPos "LZ_Xray");
